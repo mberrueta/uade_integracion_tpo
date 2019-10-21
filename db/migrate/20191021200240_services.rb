@@ -8,9 +8,11 @@ class Services < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    create_table :student_services, id: false do |t|
+    create_table :services_students, id: false do |t|
       t.belongs_to :service
       t.belongs_to :student
     end
+
+    add_reference :students, :holder, foreign_key: true
   end
 end

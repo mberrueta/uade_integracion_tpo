@@ -62,11 +62,11 @@ ActiveRecord::Schema.define(version: 2019_10_21_200240) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "student_services", id: false, force: :cascade do |t|
+  create_table "services_students", id: false, force: :cascade do |t|
     t.bigint "service_id"
     t.bigint "student_id"
-    t.index ["service_id"], name: "index_student_services_on_service_id"
-    t.index ["student_id"], name: "index_student_services_on_student_id"
+    t.index ["service_id"], name: "index_services_students_on_service_id"
+    t.index ["student_id"], name: "index_services_students_on_student_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 2019_10_21_200240) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "holder_id"
+    t.index ["holder_id"], name: "index_students_on_holder_id"
     t.index ["user_id"], name: "index_students_on_user_id", unique: true
   end
 
@@ -91,5 +93,6 @@ ActiveRecord::Schema.define(version: 2019_10_21_200240) do
   add_foreign_key "admin_users", "users"
   add_foreign_key "employees", "users"
   add_foreign_key "holders", "users"
+  add_foreign_key "students", "holders"
   add_foreign_key "students", "users"
 end
