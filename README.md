@@ -1,6 +1,6 @@
 # README
 
-TPO School
+TPO School API
 
 ## Dependencies
 
