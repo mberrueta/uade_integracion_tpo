@@ -36,3 +36,9 @@ Style/ClassAndModuleChildren:
 Bundler/GemComment:
   Enabled: false
 
+Lint/NumberConversion:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+

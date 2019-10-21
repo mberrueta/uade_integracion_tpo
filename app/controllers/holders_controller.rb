@@ -1,5 +1,5 @@
 class HoldersController < ApplicationController
-  before_action :find_one, except: [:create, :index]
+  before_action :find_one, except: %i[create index]
 
   def index
     @holders = Holder.all
@@ -37,7 +37,6 @@ class HoldersController < ApplicationController
 
   def find_one
     @holder = Holder.find(params[:id])
-    
   rescue ActiveRecord::RecordNotFound
     render json: { errors: 'Holder not found' }, status: :not_found
   end
@@ -49,7 +48,7 @@ class HoldersController < ApplicationController
       :email,
       :phone,
       :address,
-      :user_id,
+      :user_id
     )
     params.required(:name)
   end

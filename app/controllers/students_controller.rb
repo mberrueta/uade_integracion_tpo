@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :find_one, except: [:create, :index]
+  before_action :find_one, except: %i[create index]
 
   def index
     @students = Student.all
@@ -37,7 +37,6 @@ class StudentsController < ApplicationController
 
   def find_one
     @student = Student.find(params[:id])
-    
   rescue ActiveRecord::RecordNotFound
     render json: { errors: 'Student not found' }, status: :not_found
   end
