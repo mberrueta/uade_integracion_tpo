@@ -10,21 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 2019_10_21_182619) do
+=======
+ActiveRecord::Schema.define(version: 2019_10_21_190121) do
+>>>>>>> Stashed changes
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< Updated upstream
   create_table "admin_users", force: :cascade do |t|
+=======
+  create_table "employees", force: :cascade do |t|
+>>>>>>> Stashed changes
     t.string "name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
     t.string "phone"
     t.string "address"
+<<<<<<< Updated upstream
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_admin_users_on_user_id", unique: true
+=======
+    t.date "start_date"
+    t.float "salary"
+    t.bigint "user_id"
+    t.string "rol"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_employees_on_user_id", unique: true
+>>>>>>> Stashed changes
   end
 
   create_table "holders", force: :cascade do |t|
@@ -58,7 +76,11 @@ ActiveRecord::Schema.define(version: 2019_10_21_182619) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+<<<<<<< Updated upstream
   add_foreign_key "admin_users", "users"
+=======
+  add_foreign_key "employees", "users"
+>>>>>>> Stashed changes
   add_foreign_key "holders", "users"
   add_foreign_key "students", "users"
 end
