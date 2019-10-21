@@ -1,0 +1,26 @@
+openapi: 3.0.0
+info:
+  title: int_school
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /holders:
+    get:
+      summary: Get list of holders
+      tags: []
+      responses: {}
+    post:
+      summary: Create a holder
+      tags: []
+      responses: {}
+    patch:
+      summary: Update single attr from a holder
+      tags: []
+      responses: {}
+    delete:
+      summary: Remove a holder
+      tags: []
+      responses: {}
+components:
+  schemas: {}
