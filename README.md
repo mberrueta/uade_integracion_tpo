@@ -23,4 +23,5 @@ rails generate model Holder
 rails db:create
 rails db:migrate
 # rails db:rollback to revert and go back
+rails generate controller Holders
 ```
