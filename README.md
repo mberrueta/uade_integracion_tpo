@@ -15,3 +15,11 @@ cd uade_integracion_tpo
 docker-compose -d up
 bundle install
 ```
+
+## Add Model
+
+```sh
+rails generate migration AddXXXModel
+rails db:migrate
+# rails db:rollback to revert and go back
+```
