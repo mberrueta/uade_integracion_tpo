@@ -19,7 +19,7 @@ bundle install
 ## Add Model
 
 ```sh
-rails generate migration AddXXXModel
+rails generate model Holder
 rails db:migrate
 # rails db:rollback to revert and go back
 ```
