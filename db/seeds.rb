@@ -12,7 +12,7 @@ h1 = Holder.create!(
     user: u1,
 )
 
-a1 = Admin.create!(
+a1 = AdminUser.create!(
     name: 'admin1',
     last_name: 'admin1_ln',
     email: 'admin1@gmail.com',

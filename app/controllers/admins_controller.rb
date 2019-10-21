@@ -2,17 +2,17 @@ class AdminsController < ApplicationController
     before_action :find_one, except: [:create, :index]
   
     def index
-      @holders = AdminUser.all
-      render json: @admin_users, status: :ok
+      @admin_user = AdminUser.all
+      render json: @admin_user, status: :ok
     end
   
     def show
-      render json: @admin_users, status: :ok
+      render json: @admin_user, status: :ok
     end
   
     def create
-      @holder = AdminUser.new(holder_params)
-      if @holder.save
+      @admin_user = AdminUser.new(admin_params)
+      if @admin_user.save
         render json: @admin_user, status: :created
       else
         render json: { errors: @admin_user.errors.full_messages },
@@ -43,14 +43,14 @@ class AdminsController < ApplicationController
     end
   
     def admin_params
-      params.permit(
+        params.required(:name)
+        params.permit(
         :name,
         :last_name,
         :email,
         :phone,
         :address,
-        :user_id,
+        :user_id
       )
-      params.required(:name)
     end
   end
