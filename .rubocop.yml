@@ -1,0 +1,38 @@
+Rails:
+  Enabled: true
+
+AllCops:
+  TargetRubyVersion: 2.6.5
+  EnabledByDefault: true
+  Exclude:
+    - 'bin/*'
+    - 'tmp/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'db/schema.rb'
+    - 'config/puma.rb'
+    - 'config/initializers/*'
+    - 'config/environments/*'
+    - 'Rakefile'
+
+Style/Copyright:
+  Enabled: false
+
+Style/DocumentationMethod:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/MethodCallWithArgsParentheses:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Bundler/GemComment:
+  Enabled: false
+
