@@ -39,6 +39,18 @@ ActiveRecord::Schema.define(version: 2019_10_21_182619) do
     t.index ["user_id"], name: "index_holders_on_user_id", unique: true
   end
 
+  create_table "students", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "last_name", null: false
+    t.string "email", null: false
+    t.string "phone"
+    t.string "address"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_students_on_user_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "password_digest", null: false
@@ -48,4 +60,5 @@ ActiveRecord::Schema.define(version: 2019_10_21_182619) do
 
   add_foreign_key "admin_users", "users"
   add_foreign_key "holders", "users"
+  add_foreign_key "students", "users"
 end
