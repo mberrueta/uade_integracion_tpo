@@ -23,3 +23,11 @@ _a1 = AdminUser.create!(
   email: 'admin1@gmail.com',
   user: u1
 )
+
+_e1 = Employee.create!(
+  id: 1,
+  name: 'emp1',
+  last_name: 'emp1_ln',
+  email: 'emp1@gmail.com',
+  user: u1
+)
