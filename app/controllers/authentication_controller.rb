@@ -18,8 +18,13 @@ class AuthenticationController < ApplicationController
   def result
     {
       token: JsonWebToken.encode(user_id: @user.id),
-      exp: Time.now + Integer(24.hours, 10).strftime('%m-%d-%Y %H:%M'),
-      username: @user.name
+      exp: exp,
+      username: @user.name,
+      roles: []
     }
+  end
+
+  def exp
+    24.hours.from_now.strftime('%m-%d-%Y %H:%M')
   end
 end
