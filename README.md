@@ -22,4 +22,5 @@ bundle install
 rails generate model Holder
 rails db:migrate
 # rails db:rollback to revert and go back
+rails generate controller Holders
 ```
