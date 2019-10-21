@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :users
   resources :holders
   resources :students
+  resources :admins
 end

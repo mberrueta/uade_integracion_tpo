@@ -11,3 +11,10 @@ h1 = Holder.create!(
     email: 'holder1@gmail.com',
     user: u1,
 )
+
+a1 = Admin.create!(
+    name: 'admin1',
+    last_name: 'admin1_ln',
+    email: 'admin1@gmail.com',
+    user: u1,
+)
