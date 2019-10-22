@@ -36,6 +36,6 @@ class InvoicesController < ApplicationController
     invoices = Invoice.all.includes(items: :service)
     invoices = invoices.where(student_id: params[:student_id]) if params[:student_id]
     invoices = invoices.joins(:student).where(students: { holder_id: params[:holder_id] }) if params[:holder_id]
-    invoices.to_json(include: items: :service, methods: [:subtotal, :total])
+    invoices.to_json(include: { items: :service }, methods: [:subtotal, :total])
   end
 end
