@@ -6,8 +6,4 @@ class Service < ApplicationRecord
             numericality: {
               greater_than_or_equal_to: 0
             }
-
-  # def price
-  #   self[:price].round(2)
-  # end
 end

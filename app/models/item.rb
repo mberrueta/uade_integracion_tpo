@@ -2,6 +2,8 @@ class Item < ApplicationRecord
   belongs_to :invoice
   belongs_to :service
 
+  delegate :name, to: :service
+
   validates :invoice, presence: true
   validates :price,
             numericality: {
