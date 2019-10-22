@@ -43,6 +43,8 @@ class AdminsController < ApplicationController
 
   def admin_params
     params.required(:name)
+    params.required(:last_name)
+    params.required(:email)
     params.permit(
       :name,
       :last_name,

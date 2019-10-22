@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
-gem "active_model_serializers", require: true
+gem 'active_model_serializers', require: true
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'jwt'
@@ -15,6 +15,10 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
+  gem 'pry-state'
   gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 end
 
