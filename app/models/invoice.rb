@@ -9,8 +9,8 @@ class Invoice < ApplicationRecord
   validates :month,
             numericality: {
               only_integer: true,
-              greater_than_or_equal_to: 0,
-              less_than_or_equal_to: 1
+              greater_than_or_equal_to: 1,
+              less_than_or_equal_to: 12
             },
             presence: true
   validates :student, presence: true
