@@ -3,14 +3,15 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+gem "active_model_serializers", require: true
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'jwt'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
+gem 'rack-cors'
 gem 'rails', '~> 6.0.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'rack-cors'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ServicesController < ApplicationController
-  before_action :find_one, except: [:create, :index]
+  before_action :find_one, except: %i[create index]
 
   def index
     @services = Service.all
@@ -39,7 +39,6 @@ class ServicesController < ApplicationController
 
   def find_one
     @service = Service.find(params[:id])
-
   rescue ActiveRecord::RecordNotFound
     render json: { errors: 'Service not found' }, status: :not_found
   end
