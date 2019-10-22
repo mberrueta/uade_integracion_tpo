@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :employees
   resources :holders
   resources :services
-  resources :students
+  resources :students do
+    resources :invoices, module: :students, only: :index
+  end
   resources :users
   resources :invoices, except: %i[create delete]
   resources :payments
