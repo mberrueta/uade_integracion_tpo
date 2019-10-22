@@ -23,4 +23,12 @@ class Invoice < ApplicationRecord
               greater_than_or_equal_to: 2000
             },
             presence: true
+
+  def subtotal
+    @subtotal ||= items.sum(:price)
+  end
+
+  def total
+    @total ||= subtotal - subtotal * discount
+  end
 end
