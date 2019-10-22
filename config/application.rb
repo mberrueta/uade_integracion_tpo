@@ -24,6 +24,8 @@ module IntSchool
     config.load_defaults 6.0
     config.api_only = true
 
+    config.action_dispatch.return_only_media_type_on_content_type = false
+    
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
