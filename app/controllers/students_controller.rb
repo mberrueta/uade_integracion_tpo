@@ -53,7 +53,8 @@ class StudentsController < ApplicationController
       :email,
       :phone,
       :address,
-      :user_id
+      :user_id,
+      :holder_id
     )
   end
 end
