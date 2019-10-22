@@ -31,17 +31,9 @@ module IntSchool
       end
     end
 
-     # CODE YOU SHOULD ADD vvvvvv
      initializer(:remove_action_mailbox_and_activestorage_routes, after: :add_routing_paths) { |app|
       app.routes_reloader.paths.delete_if {|path| path =~ /activestorage/}
       app.routes_reloader.paths.delete_if {|path| path =~ /actionmailbox/ }
     }
-    # CODE YOU SHOULD ADD ^^^^^^^^
-    
-    initializer(:remove_activestorage_routes, after: :add_routing_paths) do |app|
-      pp app.routes_reloader.paths
-
-      app.routes_reloader.paths.delete_if { |path| path =~ /.*rails.*/ }
-    end
   end
 end
