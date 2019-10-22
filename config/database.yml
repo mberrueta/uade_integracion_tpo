@@ -2,30 +2,18 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV['PGHOST'] || 'localhost' %>
   port: <%= ENV['PGPORT'] || 5432 %>
   username: postgres
 
 
 development:
   <<: *default
-  database: int_school_development
-  url: localhost
+  url: postgresql://localhost/int_school_development
 
 test:
   <<: *default
-  database: int_school_test
+  url: postgresql://localhost/int_school_test
 
-#
-#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
-#
-# You can use this database configuration with:
-#
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
 production:
   <<: *default
-  database: int_school_production
-  username: postgres
-  password: <%= ENV['INT_SCHOOL_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>

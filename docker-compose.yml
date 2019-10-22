@@ -6,9 +6,9 @@ services:
     environment:
       PGHOST: localhost
       PGPORT: '5432'
-      PGDATABASE: int_school_test
       PGUSER: postgres
     ports:
       - "5432:5432"
     volumes:
-    - ./postgres:/var/lib/postgresql/data
+      - /var/lib/postgresql/data
+    

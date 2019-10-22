@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+TPO School API
 
-Things you may want to cover:
+## Dependencies
 
-* Ruby version
+- ruby version 2.6.5   `rvm install "ruby-2.6.5"`
+- docker
 
-* System dependencies
+## Install
 
-* Configuration
+```sh
+git clone git@github.com:mberrueta/uade_integracion_tpo.git
+cd uade_integracion_tpo
+docker-compose -d up
+bundle install
+```
 
-* Database creation
+## Add Model
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```sh
+rails generate model Holder
+rails db:create
+rails db:migrate
+# rails db:rollback to revert and go back
+rails generate controller Holders
+```
