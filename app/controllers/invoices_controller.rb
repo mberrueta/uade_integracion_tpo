@@ -4,8 +4,7 @@ class InvoicesController < ApplicationController
   before_action :find_one, except: %i[create index]
 
   def index
-    @invoices = Invoice.all.includes(:items)
-    render json: @invoices, status: :ok
+    render json: invoices, status: :ok
   end
 
   def show
@@ -31,5 +30,12 @@ class InvoicesController < ApplicationController
 
   def invoice_params
     params.permit(:discount)
+  end
+
+  def invoices()
+    invoices = Invoice.all.includes(:items)
+    invoices = invoices.where(student_id: params[:student_id]) if params[:student_id]
+    invoices = invoices.joins(:student).where(students: { holder_id: params[:holder_id] }) if params[:holder_id]
+    invoices.to_json(include: :items, methods: [:subtotal, :total])
   end
 end
