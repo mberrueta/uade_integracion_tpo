@@ -25,10 +25,14 @@ class Invoice < ApplicationRecord
             presence: true
 
   def subtotal
-    @subtotal ||= items.sum(:price)
+    @subtotal ||= items.sum(:price).to_f
   end
 
+  # def discount
+  #   self[:discount].round(2)
+  # end
+
   def total
-    @total ||= subtotal - subtotal * discount
+    @total ||= (subtotal - subtotal * discount).to_f
   end
 end
