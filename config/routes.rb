@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :services
   resources :students
   resources :users
-  resources :invoices, except: %i[create index]
-  resources :paynments
+  resources :invoices, except: %i[create delete]
+  resources :payments
 end

@@ -18,7 +18,7 @@ class Invoices < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    create_table :paymnents do |t|
+    create_table :payments do |t|
       t.belongs_to :invoice, null: false, foreign_key: true
       t.datetime :date, null: false
       t.decimal :amount, default: 0

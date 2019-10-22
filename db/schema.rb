@@ -74,14 +74,14 @@ ActiveRecord::Schema.define(version: 2019_10_22_125955) do
     t.index ["service_id"], name: "index_items_on_service_id"
   end
 
-  create_table "paymnents", force: :cascade do |t|
+  create_table "payments", force: :cascade do |t|
     t.bigint "invoice_id", null: false
     t.datetime "date", null: false
     t.decimal "amount", default: "0.0"
     t.string "payment_method", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["invoice_id"], name: "index_paymnents_on_invoice_id"
+    t.index ["invoice_id"], name: "index_payments_on_invoice_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_125955) do
   add_foreign_key "invoices", "students"
   add_foreign_key "items", "invoices"
   add_foreign_key "items", "services"
-  add_foreign_key "paymnents", "invoices"
+  add_foreign_key "payments", "invoices"
   add_foreign_key "students", "holders"
   add_foreign_key "students", "users"
 end
