@@ -1,7 +1,9 @@
 class Invoice < ApplicationRecord
   belongs_to :student
   has_many :items, autosave: true
-  
+
+  validates_uniqueness_of :month, scope: [:student, :year], message: 'Invoice already created'
+
   validates :discount,
             numericality: {
               greater_than_or_equal_to: 0,
