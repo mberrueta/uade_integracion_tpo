@@ -82,6 +82,7 @@ e1 = Employee.create!(
   name: 'Federico',
   last_name: 'Lopez',
   email: 'flopez@gmail.com',
+  rol: 'Maestro',
   user: u6
 )
 
@@ -90,6 +91,7 @@ e2 = Employee.create!(
   name: 'Leandro',
   last_name: 'Lopez',
   email: 'llopez@gmail.com',
+  rol: 'Director',
   user: u7
 )
 
@@ -98,6 +100,7 @@ e3 = Employee.create!(
   name: 'Agustina',
   last_name: 'Lopez',
   email: 'alopez@gmail.com',
+  rol: 'Secretaria',
   user: u8
 )
 
