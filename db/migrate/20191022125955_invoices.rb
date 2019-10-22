@@ -1,4 +1,5 @@
 class Invoices < ActiveRecord::Migration[6.0]
+  # rubocop:disable Metrics/AbcSize
   def change
     create_table :invoices do |t|
       t.belongs_to :student, null: false, foreign_key: true
@@ -26,4 +27,5 @@ class Invoices < ActiveRecord::Migration[6.0]
       t.timestamps
     end
   end
+  # rubocop:enable Metrics/AbcSize
 end
