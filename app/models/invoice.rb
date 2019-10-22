@@ -1,6 +1,7 @@
 class Invoice < ApplicationRecord
   belongs_to :student
-
+  has_many :items, autosave: true
+  
   validates :discount,
             numericality: {
               greater_than_or_equal_to: 0,
