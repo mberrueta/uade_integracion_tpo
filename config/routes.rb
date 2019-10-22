@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :invoices, module: :students, only: :index
   end
   resources :users
-  resources :invoices, except: %i[create delete]
+  resources :invoices, except: %i[create delete] do
+    resources :payments, module: :invoices, only: :index
+  end
   resources :payments
 end

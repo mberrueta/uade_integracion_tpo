@@ -2,8 +2,6 @@
 
 module Students
   class InvoicesController < ApplicationController
-    before_action :find_one, except: %i[create index]
-
     def index
       render json: invoices, status: :ok
     end
