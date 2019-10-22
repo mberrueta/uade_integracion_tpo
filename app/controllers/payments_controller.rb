@@ -46,7 +46,6 @@ class PaymentsController < ApplicationController
   def payment_params
     params.require(:invoice_id)
     params.require(:amount)
-    params.require(:payment_method)
     params.permit(
       :invoice_id,
       :amount,

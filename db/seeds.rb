@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
+Item.delete_all
+Payment.delete_all
+Invoice.delete_all
 Service.delete_all
 Student.delete_all
 AdminUser.delete_all
 Employee.delete_all
 Holder.delete_all
 User.delete_all
-
-Service.destroy_all
-Student.destroy_all
-AdminUser.destroy_all
-Employee.destroy_all
-Holder.destroy_all
-User.destroy_all
 
 u1 = User.create!(id: 10001, name: 'pepe.arg@gmail.com', password: '123456')
 u2 = User.create!(id: 10002, name: 'monigali@gmail.com', password: '123456')
