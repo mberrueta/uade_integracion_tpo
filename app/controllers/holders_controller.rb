@@ -42,6 +42,7 @@ class HoldersController < ApplicationController
   end
 
   def holder_params
+    params.required(:name)
     params.permit(
       :name,
       :last_name,
@@ -50,6 +51,5 @@ class HoldersController < ApplicationController
       :address,
       :user_id
     )
-    params.required(:name)
   end
 end

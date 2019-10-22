@@ -42,6 +42,7 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
+    params.required(:name)
     params.permit(
       :name,
       :last_name,
@@ -53,6 +54,6 @@ class EmployeesController < ApplicationController
       :rol,
       :user_id
     )
-    params.required(:name)
+    
   end
 end
