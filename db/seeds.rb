@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+Service.delete_all
+Student.delete_all
+AdminUser.delete_all
+Employee.delete_all
+Holder.delete_all
+User.delete_all
+
 Service.destroy_all
 Student.destroy_all
 AdminUser.destroy_all
@@ -7,27 +14,27 @@ Employee.destroy_all
 Holder.destroy_all
 User.destroy_all
 
-u1 = User.create!(id: 10001, name: 'José', password: '123456')
-u2 = User.create!(id: 10002, name: 'Mónica', password: '123456')
-u3 = User.create!(id: 10003, name: 'Arturo', password: '123456')
-u4 = User.create!(id: 10004, name: 'Jorge', password: '123456')
-u5 = User.create!(id: 10005, name: 'Julia', password: '123456')
-u6 = User.create!(id: 10006, name: 'Federico', password: '123456')
-u7 = User.create!(id: 10007, name: 'Leandro', password: '123456')
-u8 = User.create!(id: 10008, name: 'Agustina', password: '123456')
-u9 = User.create!(id: 10009, name: 'Facundo', password: '123456')
-u10 = User.create!(id: 100010, name: 'Laureano', password: '123456')
-u11 = User.create!(id: 100011, name: 'Laura', password: '123456')
-u12 = User.create!(id: 100012, name: 'Julieta', password: '123456')
-u13 = User.create!(id: 100013, name: 'Fatima', password: '123456')
-u14 = User.create!(id: 100014, name: 'Julian', password: '123456')
+u1 = User.create!(id: 10001, name: 'pepe.arg@gmail.com', password: '123456')
+u2 = User.create!(id: 10002, name: 'monigali@gmail.com', password: '123456')
+u3 = User.create!(id: 10003, name: 'arthur_galindez@gmail.com', password: '123456')
+u4 = User.create!(id: 10004, name: 'jrodriguez@gmail.com', password: '123456')
+u5 = User.create!(id: 10005, name: 'jantin@gmail.com', password: '123456')
+u6 = User.create!(id: 10006, name: 'flopez@gmail.com', password: '123456')
+u7 = User.create!(id: 10007, name: 'llopez@gmail.com', password: '123456')
+u8 = User.create!(id: 10008, name: 'alopez@gmail.com', password: '123456')
+u9 = User.create!(id: 10009, name: 'facuaguilar@gmail.com', password: '123456')
+u10 = User.create!(id: 100010, name: 'leanbalvin@gmail.com', password: '123456')
+u11 = User.create!(id: 100011, name: 'laueche@gmail.com', password: '123456')
+u12 = User.create!(id: 100012, name: 'julificco@gmail.com', password: '123456')
+u13 = User.create!(id: 100013, name: 'fatimag@gmail.com', password: '123456')
+u14 = User.create!(id: 100014, name: 'jfantino@gmail.com', password: '123456')
 
 h1 = Holder.create!(
   id: 10001,
   name: 'José',
   last_name: 'Argento',
   email: 'pepe.arg@gmail.com',
-  user: u1
+  user_id: 10001
 )
 
 h2 = Holder.create!(
