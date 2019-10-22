@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   resources :admins
   resources :employees
-  resources :holders
+  resources :holders do
+    resources :invoices, module: :holders, only: :index
+  end
   resources :services
   resources :students do
     resources :invoices, module: :students, only: :index
