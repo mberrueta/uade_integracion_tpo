@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_21_200240) do
+ActiveRecord::Schema.define(version: 2019_10_22_125955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,36 @@ ActiveRecord::Schema.define(version: 2019_10_21_200240) do
     t.index ["user_id"], name: "index_holders_on_user_id", unique: true
   end
 
+  create_table "invoices", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.integer "year", null: false
+    t.integer "month", null: false
+    t.decimal "discount", default: "0.0"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_invoices_on_student_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.bigint "invoice_id", null: false
+    t.bigint "service_id", null: false
+    t.decimal "price", default: "0.0"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["invoice_id"], name: "index_items_on_invoice_id"
+    t.index ["service_id"], name: "index_items_on_service_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "invoice_id", null: false
+    t.datetime "date", null: false
+    t.decimal "amount", default: "0.0"
+    t.string "payment_method", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["invoice_id"], name: "index_payments_on_invoice_id"
+  end
+
   create_table "services", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
@@ -93,6 +123,10 @@ ActiveRecord::Schema.define(version: 2019_10_21_200240) do
   add_foreign_key "admin_users", "users"
   add_foreign_key "employees", "users"
   add_foreign_key "holders", "users"
+  add_foreign_key "invoices", "students"
+  add_foreign_key "items", "invoices"
+  add_foreign_key "items", "services"
+  add_foreign_key "payments", "invoices"
   add_foreign_key "students", "holders"
   add_foreign_key "students", "users"
 end

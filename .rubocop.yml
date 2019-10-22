@@ -41,4 +41,3 @@ Lint/NumberConversion:
 
 Metrics/MethodLength:
   Enabled: false
-
