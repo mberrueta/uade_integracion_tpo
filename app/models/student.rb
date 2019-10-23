@@ -11,8 +11,8 @@ class Student < ApplicationRecord
 
   before_validation :default_values
 
-  def create_services(service_ids)
-    self.services << Service.where(id: service_ids)
+  def assign_services(service_ids)
+    services << Service.where(id: service_ids)
   end
 
   private

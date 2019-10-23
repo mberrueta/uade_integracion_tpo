@@ -25,7 +25,7 @@ module IntSchool
     config.api_only = true
 
     config.action_dispatch.return_only_media_type_on_content_type = false
-    
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
@@ -33,9 +33,12 @@ module IntSchool
       end
     end
 
-     initializer(:remove_action_mailbox_and_activestorage_routes, after: :add_routing_paths) { |app|
-      app.routes_reloader.paths.delete_if {|path| path =~ /activestorage/}
-      app.routes_reloader.paths.delete_if {|path| path =~ /actionmailbox/ }
-    }
+    initializer(
+      :remove_action_mailbox_and_activestorage_routes,
+      after: :add_routing_paths
+    ) do |app|
+      app.routes_reloader.paths.delete_if { |path| path =~ /activestorage/ }
+      app.routes_reloader.paths.delete_if { |path| path =~ /actionmailbox/ }
+    end
   end
 end

@@ -12,6 +12,6 @@ class Payment < ApplicationRecord
 
   def default_values
     self.date ||= Time.now
-    self.payment_method = 'efectivo' unless self.payment_method.present?
+    self.payment_method = 'efectivo' unless payment_method.present?
   end
 end

@@ -11,13 +11,11 @@ class User < ApplicationRecord
             if: -> { new_record? || !password.nil? }
 
   def roles
-    @roles ||= begin
-      tmp = []
-      tmp << :student if student
-      tmp << :holder if holder
-      tmp << :admin_user if admin_user
-      tmp << :employee if employee
-      tmp
-    end
+    @roles = []
+    @roles << :student if student
+    @roles << :holder if holder
+    @roles << :admin_user if admin_user
+    @roles << :employee if employee
+    @roles
   end
 end

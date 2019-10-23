@@ -10,71 +10,127 @@ Employee.delete_all
 Holder.delete_all
 User.delete_all
 
-u1 = User.create!(id: 10001, name: 'pepe.arg@gmail.com', password: '123456')
-u2 = User.create!(id: 10002, name: 'monigali@gmail.com', password: '123456')
-u3 = User.create!(id: 10003, name: 'arthur_galindez@gmail.com', password: '123456')
-u4 = User.create!(id: 10004, name: 'jrodriguez@gmail.com', password: '123456')
-u5 = User.create!(id: 10005, name: 'jantin@gmail.com', password: '123456')
-u6 = User.create!(id: 10006, name: 'flopez@gmail.com', password: '123456')
-u7 = User.create!(id: 10007, name: 'llopez@gmail.com', password: '123456')
-u8 = User.create!(id: 10008, name: 'alopez@gmail.com', password: '123456')
-u9 = User.create!(id: 10009, name: 'facuaguilar@gmail.com', password: '123456')
-u10 = User.create!(id: 100010, name: 'leanbalvin@gmail.com', password: '123456')
-u11 = User.create!(id: 100011, name: 'laueche@gmail.com', password: '123456')
-u12 = User.create!(id: 100012, name: 'julificco@gmail.com', password: '123456')
-u13 = User.create!(id: 100013, name: 'fatimag@gmail.com', password: '123456')
-u14 = User.create!(id: 100014, name: 'jfantino@gmail.com', password: '123456')
+u1 = User.create!(
+  id: 10_001,
+  name: 'pepe.arg@gmail.com',
+  password: '123456'
+)
+u2 = User.create!(
+  id: 10_002,
+  name: 'monigali@gmail.com',
+  password: '123456'
+)
+u3 = User.create!(
+  id: 10_003,
+  name: 'arthur_galindez@gmail.com',
+  password: '123456'
+)
+u4 = User.create!(
+  id: 10_004,
+  name: 'jrodriguez@gmail.com',
+  password: '123456'
+)
+u5 = User.create!(
+  id: 10_005,
+  name: 'jantin@gmail.com',
+  password: '123456'
+)
+u6 = User.create!(
+  id: 10_006,
+  name: 'flopez@gmail.com',
+  password: '123456'
+)
+u7 = User.create!(
+  id: 10_007,
+  name: 'llopez@gmail.com',
+  password: '123456'
+)
+u8 = User.create!(
+  id: 10_008,
+  name: 'alopez@gmail.com',
+  password: '123456'
+)
+u9 = User.create!(
+  id: 10_009,
+  name: 'facuaguilar@gmail.com',
+  password: '123456'
+)
+u10 = User.create!(
+  id: 100_010,
+  name: 'leanbalvin@gmail.com',
+  password: '123456'
+)
+u11 = User.create!(
+  id: 100_011,
+  name: 'laueche@gmail.com',
+  password: '123456'
+)
+u12 = User.create!(
+  id: 100_012,
+  name: 'julificco@gmail.com',
+  password: '123456'
+)
+u13 = User.create!(
+  id: 100_013,
+  name: 'fatimag@gmail.com',
+  password: '123456'
+)
+u14 = User.create!(
+  id: 100_014,
+  name: 'jfantino@gmail.com',
+  password: '123456'
+)
 
 h1 = Holder.create!(
-  id: 10001,
+  id: 10_001,
   name: 'José',
   last_name: 'Argento',
   email: 'pepe.arg@gmail.com',
-  user_id: 10001
+  user_id: 10_001
 )
 
 h2 = Holder.create!(
-  id: 10002,
+  id: 10_002,
   name: 'Mónica',
   last_name: 'Galindez',
   email: 'monigali@gmail.com',
   user: u2
 )
 
-h3 = Holder.create!(
-  id: 10003,
+_h3 = Holder.create!(
+  id: 10_003,
   name: 'Arturo',
   last_name: 'Galindez',
   email: 'arthur_galindez@gmail.com',
   user: u3
 )
 
-a1 = AdminUser.create!(
-  id: 10001,
+_a1 = AdminUser.create!(
+  id: 10_001,
   name: 'José',
   last_name: 'Argento',
   email: 'pepe.arg@gmail.com',
   user: u1
 )
 
-a2 = AdminUser.create!(
-  id: 10002,
+_a2 = AdminUser.create!(
+  id: 10_002,
   name: 'Jorge',
   last_name: 'Rodriguez',
   email: 'jrodriguez@gmail.com',
   user: u4
 )
 
-a3 = AdminUser.create!(
-  id: 10003,
+_a3 = AdminUser.create!(
+  id: 10_003,
   name: 'Julia',
   last_name: 'Antin',
   email: 'jantin@gmail.com',
   user: u5
 )
 
-e1 = Employee.create!(
-  id: 10001,
+_e1 = Employee.create!(
+  id: 10_001,
   name: 'Federico',
   last_name: 'Lopez',
   email: 'flopez@gmail.com',
@@ -87,8 +143,8 @@ e1 = Employee.create!(
   birthdate: '1965-05-10T00:00:00Z'
 )
 
-e2 = Employee.create!(
-  id: 10002,
+_e2 = Employee.create!(
+  id: 10_002,
   name: 'Leandro',
   last_name: 'Lopez',
   email: 'llopez@gmail.com',
@@ -101,8 +157,8 @@ e2 = Employee.create!(
   birthdate: '1962-05-20T00:00:00Z'
 )
 
-e3 = Employee.create!(
-  id: 10003,
+_e3 = Employee.create!(
+  id: 10_003,
   name: 'Agustina',
   last_name: 'Lopez',
   email: 'alopez@gmail.com',
@@ -116,7 +172,7 @@ e3 = Employee.create!(
 )
 
 s1 = Student.create!(
-  id: 10001,
+  id: 10_001,
   name: 'Facundo',
   last_name: 'Aguilar',
   scholarship_type: 'Medio Turno',
@@ -126,7 +182,7 @@ s1 = Student.create!(
 )
 
 s2 = Student.create!(
-  id: 10002,
+  id: 10_002,
   name: 'Laureano',
   last_name: 'Balvin',
   scholarship_type: 'Medio Turno',
@@ -137,7 +193,7 @@ s2 = Student.create!(
 )
 
 s3 = Student.create!(
-  id: 10003,
+  id: 10_003,
   name: 'Laura',
   last_name: 'Echeverria',
   scholarship_type: 'Doble Turno',
@@ -147,7 +203,7 @@ s3 = Student.create!(
 )
 
 s4 = Student.create!(
-  id: 10004,
+  id: 10_004,
   name: 'Julieta',
   last_name: 'Ficco',
   scholarship_type: 'Doble Turno',
@@ -158,7 +214,7 @@ s4 = Student.create!(
 )
 
 s5 = Student.create!(
-  id: 10005,
+  id: 10_005,
   name: 'Fátima',
   last_name: 'Guido',
   scholarship_type: 'Doble Turno',
@@ -168,7 +224,7 @@ s5 = Student.create!(
 )
 
 s6 = Student.create!(
-  id: 10006,
+  id: 10_006,
   name: 'Julian',
   last_name: 'Fantino',
   scholarship_type: 'Doble Turno',
@@ -179,49 +235,49 @@ s6 = Student.create!(
 )
 
 serv1 = Service.create!(
-  id: 10001,
+  id: 10_001,
   name: 'Escolaridad simple',
   description: 'Turno de 5 hs.',
   price: 1000
 )
 
 serv2 = Service.create!(
-  id: 10002,
+  id: 10_002,
   name: 'Doble escolaridad',
   description: 'Turno de 8 hs.',
   price: 1900
 )
 
 serv3 = Service.create!(
-  id: 10003,
+  id: 10_003,
   name: 'Ingles',
   description: '2 hs semanales.',
   price: 270
 )
 
 serv4 = Service.create!(
-  id: 10004,
+  id: 10_004,
   name: 'Computación',
   description: '2 hs semanales.',
   price: 270
 )
 
 serv5 = Service.create!(
-  id: 10005,
+  id: 10_005,
   name: 'Almuerzo',
   description: 'Platos del día.',
   price: 70
 )
 
 serv6 = Service.create!(
-  id: 10006,
+  id: 10_006,
   name: 'Desayuno',
   description: 'Café con 2 medialunas.',
   price: 30
 )
 
 serv7 = Service.create!(
-  id: 10007,
+  id: 10_007,
   name: 'Merienda',
   description: 'Mate con bizcochitos.',
   price: 30
