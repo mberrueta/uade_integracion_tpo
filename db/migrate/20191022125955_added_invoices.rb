@@ -1,4 +1,4 @@
-class Invoices < ActiveRecord::Migration[6.0]
+class AddedInvoices < ActiveRecord::Migration[6.0]
   # rubocop:disable Metrics/AbcSize
   def change
     create_table :invoices do |t|
