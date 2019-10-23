@@ -23,6 +23,6 @@ class Employee < ApplicationRecord
   end
 
   def register_presentism_system
-    pp Services::Presentism.new.register(self)
+    Services::Presentism.new.register(self)
   end
 end
