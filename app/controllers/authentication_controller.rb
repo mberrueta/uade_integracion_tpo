@@ -20,12 +20,12 @@ class AuthenticationController < ApplicationController
       exp: exp,
       roles: user.roles,
       user: user.as_json(
-        only: [:id, :name],
-        include: [
-          :student,
-          :holder,
-          :admin_user,
-          :employee
+        only: %i[id name],
+        include: %i[
+          student
+          holder
+          admin_user
+          employee
         ]
       )
     }

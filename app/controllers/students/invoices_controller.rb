@@ -10,8 +10,8 @@ module Students
 
     def invoices
       Invoice.includes(items: :service)
-            .where(student_id: params[:student_id])
-            .to_json(include: %i[student items], methods: %[subtotal total])
+             .where(student_id: params[:student_id])
+             .to_json(include: %i[student items], methods: %(subtotal total))
     end
   end
 end
