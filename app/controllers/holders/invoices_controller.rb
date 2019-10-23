@@ -10,8 +10,8 @@ module Holders
 
     def invoices
       Invoice.includes(items: :service)
-             .joins(:students)
-             .where(student: { holder_id: params[:holder_id] })
+             .joins(:student)
+             .where(students: { holder_id: params[:holder_id] })
              .to_json(
               include: [
                 :student,
