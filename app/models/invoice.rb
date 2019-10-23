@@ -1,6 +1,7 @@
 class Invoice < ApplicationRecord
   belongs_to :student
   has_many :items, autosave: true
+  has_many :payments
 
   validates_uniqueness_of :month,
                           scope: %i[student year],
@@ -30,9 +31,9 @@ class Invoice < ApplicationRecord
     @subtotal ||= items.sum(:price).to_f
   end
 
-  # def discount
-  #   self[:discount].round(2)
-  # end
+  def payed
+    total <= payments.sum(:amount)
+  end
 
   def total
     @total ||= (subtotal - subtotal * discount).to_f

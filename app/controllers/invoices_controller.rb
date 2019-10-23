@@ -23,7 +23,13 @@ class InvoicesController < ApplicationController
   private
 
   def find_one
-    @invoice = Invoice.find(params[:id]).includes(:items)
+    @invoice = Invoice.find(params[:id]).to_json(
+      include: [
+        :student,
+        items: { methods: :name }
+      ],
+      methods: %i[subtotal total payed]
+    )
   rescue ActiveRecord::RecordNotFound
     render json: { errors: 'Invoice not found' }, status: :not_found
   end
@@ -43,7 +49,7 @@ class InvoicesController < ApplicationController
         :student,
         items: { methods: :name }
       ],
-      methods: %i[subtotal total]
+      methods: %i[subtotal total payed]
     )
   end
   # rubocop:enable Metrics/LineLength
