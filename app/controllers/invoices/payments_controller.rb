@@ -9,8 +9,8 @@ module Invoices
     private
 
     def payments
-      Payment.joins(invoices: :students)
-             .where(invoice: { student: { holder_id: params[:holder_id] } })
+      Payment.joins(invoice: :student)
+             .where(invoices: { students: { holder_id: params[:holder_id] } })
     end
   end
 end
