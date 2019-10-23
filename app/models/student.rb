@@ -1,4 +1,7 @@
 class Student < ApplicationRecord
+  SINGLE_SCHOLARSHIP_ID = 10_001
+  DOUBLE_SCHOLARSHIP_ID = 10_002
+
   belongs_to :user
   belongs_to :holder
   has_and_belongs_to_many :services
@@ -13,6 +16,12 @@ class Student < ApplicationRecord
 
   def assign_services(service_ids)
     services << Service.where(id: service_ids)
+  end
+
+  def scholarship_type
+    return services.where(id: [SINGLE_SCHOLARSHIP_ID, DOUBLE_SCHOLARSHIP_ID])
+                   .pluck(:name)
+                   .first
   end
 
   private
