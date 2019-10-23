@@ -12,6 +12,8 @@ class StudentsController < ApplicationController
 
   def create
     @student = Student.new(student_params)
+    @student.assign_services(params[:service_ids])
+    
     if @student.save
       render json: @student, status: :created
     else
