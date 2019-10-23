@@ -175,7 +175,6 @@ s1 = Student.create!(
   id: 10_001,
   name: 'Facundo',
   last_name: 'Aguilar',
-  scholarship_type: 'Medio Turno',
   email: 'facuaguilar@gmail.com',
   user: u9,
   holder: h1
@@ -185,7 +184,6 @@ s2 = Student.create!(
   id: 10_002,
   name: 'Laureano',
   last_name: 'Balvin',
-  scholarship_type: 'Medio Turno',
   phone: '15601560',
   email: 'leanbalvin@gmail.com',
   user: u10,
@@ -196,7 +194,6 @@ s3 = Student.create!(
   id: 10_003,
   name: 'Laura',
   last_name: 'Echeverria',
-  scholarship_type: 'Doble Turno',
   email: 'laueche@gmail.com',
   user: u11,
   holder: h2
@@ -206,7 +203,6 @@ s4 = Student.create!(
   id: 10_004,
   name: 'Julieta',
   last_name: 'Ficco',
-  scholarship_type: 'Doble Turno',
   phone: '15459007',
   email: 'julificco@gmail.com',
   user: u12,
@@ -217,7 +213,6 @@ s5 = Student.create!(
   id: 10_005,
   name: 'Fátima',
   last_name: 'Guido',
-  scholarship_type: 'Doble Turno',
   email: 'fatimag@gmail.com',
   user: u13,
   holder: h1
@@ -227,7 +222,6 @@ s6 = Student.create!(
   id: 10_006,
   name: 'Julian',
   last_name: 'Fantino',
-  scholarship_type: 'Doble Turno',
   phone: '4304303',
   email: 'jfantino@gmail.com',
   user: u14,

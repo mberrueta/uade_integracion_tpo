@@ -56,8 +56,7 @@ class StudentsController < ApplicationController
       :phone,
       :address,
       :user_id,
-      :holder_id,
-      :scholarship_type
+      :holder_id
     )
   end
 end
