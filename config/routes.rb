@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :employees
   resources :holders do
     resources :invoices, module: :holders, only: :index
+    resources :payments, module: :holders, only: :index
   end
   resources :services
   resources :students do
