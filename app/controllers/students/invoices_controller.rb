@@ -16,7 +16,7 @@ module Students
                 :student,
                 items: { methods: :name }
               ],
-              methods: %i[subtotal total]
+              methods: %i[subtotal total payed]
             )
     end
   end
