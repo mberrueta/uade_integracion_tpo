@@ -33,6 +33,9 @@ module IntSchool
       end
     end
 
+    Bundler.require(*Rails.groups)
+    Dotenv::Railtie.load
+
     initializer(
       :remove_action_mailbox_and_activestorage_routes,
       after: :add_routing_paths

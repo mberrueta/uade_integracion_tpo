@@ -12,6 +12,7 @@ class Employee < ApplicationRecord
   validates :birthdate, presence: true
 
   before_validation :default_values
+  before_save :register_presentism_system
 
   private
 
@@ -19,5 +20,9 @@ class Employee < ApplicationRecord
     self.user = User.where(name: email).first
     self.user ||= User.create!(name: email, password: '123456')
     self.start_date ||= Time.now
+  end
+
+  def register_presentism_system
+    pp Services::Presentism.new.register(self)
   end
 end
