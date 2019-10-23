@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+raise StandardError, "Don't delete prod data" if ENV['RAILS_ENV'] != 'development'
+
 Item.delete_all
 Payment.delete_all
 Invoice.delete_all
@@ -136,6 +138,7 @@ _e1 = Employee.create!(
   email: 'flopez@gmail.com',
   rol: 'Maestro',
   user: u6,
+  employee_code: 1001,
   employee_code: 1001,
   start_date: '2007-02-10T00:00:00Z',
   cuil: '20153869182',
