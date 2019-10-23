@@ -23,7 +23,7 @@ class InvoicesController < ApplicationController
   private
 
   def find_one
-    @invoice = Invoice.find(params[:id]).includes(:items)
+    @invoice = Invoice.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     render json: { errors: 'Invoice not found' }, status: :not_found
   end
