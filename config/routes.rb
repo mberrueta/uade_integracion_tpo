@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get '/students/:id/services', to: 'students#services'
 
   resources :admins
-  resources :employees
+  resources :employees do
+    resources :absences, module: :employees, only: :create
+  end
   resources :holders do
     resources :invoices, module: :holders, only: :index
     resources :payments, module: :holders, only: :index

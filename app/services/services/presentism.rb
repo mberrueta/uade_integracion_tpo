@@ -15,6 +15,19 @@ module Services
       request('employee', req.to_json)
     end
 
+    def absences(options)
+      type = ["Vacation", "Medical day"].include?(options[:reason]) ? 'XXX' : 'AUSENCIA'
+
+      req = {
+        employeeCuit: options[:employee].cuil.remove('-'),
+        absenceDays: (options[:end_date].to_date - options[:start_date].to_date).to_i,
+        month: options[:start_date].to_date.month,
+        type: type,
+      }
+
+      request('absences', req.to_json)
+    end
+
     private
 
     def base_url
@@ -39,13 +52,7 @@ module Services
       respos = http.request(request)
       print("Response `#{respos.body}`")
 
-      case respos
-      when Net::HTTPSuccess, Net::HTTPRedirection
-        true
-      else
-        print(respos.value)
-        false
-      end
+      respos.body
     end
   end
 end
