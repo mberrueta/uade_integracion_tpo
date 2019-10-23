@@ -12,7 +12,7 @@ module Holders
       Invoice.includes(items: :service)
             .joins(:student)
             .where(students: { holder_id: params[:holder_id] })
-            .to_json(include: { items: :service }, methods: [:subtotal, :total])
+            .to_json(include: { :students, items: :service }, methods: [:subtotal, :total])
     end
   end
 end
