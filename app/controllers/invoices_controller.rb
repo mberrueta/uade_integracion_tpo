@@ -32,10 +32,10 @@ class InvoicesController < ApplicationController
     params.permit(:discount)
   end
 
-  def invoices()
-    invoices = Invoice.all.includes(items: :service)
+  def invoices
+    invoices = Invoice.all.includes(:student, items: :service)
     invoices = invoices.where(student_id: params[:student_id]) if params[:student_id]
     invoices = invoices.joins(:student).where(students: { holder_id: params[:holder_id] }) if params[:holder_id]
-    invoices.to_json(include: { :students, items: :service }, methods: [:subtotal, :total])
+    invoices.to_json(include: [:student, :items], methods: [:subtotal, :total])
   end
 end
