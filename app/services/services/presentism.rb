@@ -12,7 +12,7 @@ module Services
         lastName: employee.last_name
       }
 
-      request('/employee', req.to_json)
+      request('employee', req.to_json)
     end
 
     private
@@ -28,13 +28,24 @@ module Services
     def request(path, body)
       uri = URI.parse("#{base_url}/#{path}")
 
-      header = {'Content-Type': 'text/json'}
+      header = {'Content-Type': 'application/json'}
       http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       request = Net::HTTP::Post.new(uri.request_uri, header)
       request.body = body
 
-      print("Calling presentism API #{uri}")
-      http.request(request)
+      print("Calling presentism API #{uri} with body `#{body}`")
+      respos = http.request(request)
+      print("Response `#{respos.body}`")
+
+      case respos
+      when Net::HTTPSuccess, Net::HTTPRedirection
+        true
+      else
+        print(respos.value)
+        false
+      end
     end
   end
 end
