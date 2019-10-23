@@ -18,6 +18,9 @@ module Services
     def absences(options)
       type = ["Vacation", "Medical day"].include?(options[:reason]) ? 'XXX' : 'AUSENCIA'
 
+#       VACACIONES, ENFERMEDAD
+# esos son los posibles valores, no hay AUSENCIA
+
       req = {
         employeeCuit: options[:employee].cuil.remove('-'),
         absenceDays: (options[:end_date].to_date - options[:start_date].to_date).to_i,
