@@ -79,7 +79,12 @@ e1 = Employee.create!(
   last_name: 'Lopez',
   email: 'flopez@gmail.com',
   rol: 'Maestro',
-  user: u6
+  user: u6,
+  employee_code: 1001,
+  start_date: '2007-02-10T00:00:00Z',
+  cuil: '20153869182',
+  gender: 'm',
+  birthdate: '1965-05-10T00:00:00Z'
 )
 
 e2 = Employee.create!(
@@ -88,7 +93,12 @@ e2 = Employee.create!(
   last_name: 'Lopez',
   email: 'llopez@gmail.com',
   rol: 'Director',
-  user: u7
+  user: u7,
+  employee_code: 1000,
+  start_date: '2003-02-04T00:00:00Z',
+  cuil: '20123829183',
+  gender: 'm',
+  birthdate: '1962-05-20T00:00:00Z'
 )
 
 e3 = Employee.create!(
@@ -97,7 +107,12 @@ e3 = Employee.create!(
   last_name: 'Lopez',
   email: 'alopez@gmail.com',
   rol: 'Secretaria',
-  user: u8
+  user: u8,
+  employee_code: 1011,
+  start_date: '2017-04-19T00:00:00Z',
+  cuil: '20353863452',
+  gender: 'f',
+  birthdate: '1992-09-14T00:00:00Z'
 )
 
 s1 = Student.create!(
