@@ -9,7 +9,7 @@ module Invoices
     private
 
     def payments
-      Payment.where(holder_id: params[:holder_id])
+      Payment.where(invoice_id: params[:invoice_id])
     end
   end
 end
