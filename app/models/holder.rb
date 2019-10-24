@@ -19,16 +19,8 @@ class Holder < ApplicationRecord
   end
 
   def debit_with_cbu
-    return if debitable? && cbu || creditable?
+    return if payment_method != 'DEBITO_AUTOMATICO'
 
-    errors.add(:cbu, "can't be blank, if the payment is debit")
-  end
-
-  def debitable?
-    !creditable?
-  end
-
-  def creditable?
-    payment_method == 'CREDITO'
+    errors.add(:cbu, "can't be blank, if the payment is debit") unless cbu
   end
 end
