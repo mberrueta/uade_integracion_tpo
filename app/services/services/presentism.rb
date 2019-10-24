@@ -16,16 +16,22 @@ module Services
     end
 
     def absences(options)
-      type = ["Vacation", "Medical day"].include?(options[:reason]) ? 'XXX' : 'AUSENCIA'
-
-#       VACACIONES, ENFERMEDAD
-# esos son los posibles valores, no hay AUSENCIA
+      case options[:reason]
+      when "Vacation"
+        type = "VACACIONES"
+      when "Medical day"
+        type = "ENFERMEDAD"
+      else
+        type = "AUSENCIA"
+      end
 
       req = {
         employeeCuit: options[:employee].cuil.remove('-'),
         absenceDays: (options[:end_date].to_date - options[:start_date].to_date).to_i,
         month: options[:start_date].to_date.month,
         type: type,
+        from:  options[:start_date],
+        to:  options[:end_date]
       }
 
       request('absences', req.to_json)

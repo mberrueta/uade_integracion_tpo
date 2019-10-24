@@ -15,7 +15,7 @@ module Services
       request = Net::HTTP::Post.new(uri.request_uri, header)
       request.body = body
 
-      print("Calling presentism API #{uri} with body `#{body}`")
+      print(">>>>> Calling external #{uri} with body `#{body}`")
       respos = http.request(request)
       print("Response `#{respos.body}`")
 
