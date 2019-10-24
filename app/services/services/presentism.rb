@@ -12,7 +12,7 @@ module Services
         lastName: employee.last_name
       }
 
-      request('employee', req.to_json)
+      post('employee', req.to_json)
     end
 
     def absences(options)
@@ -34,7 +34,7 @@ module Services
         to:  options[:end_date]
       }
 
-      request('absences', req.to_json)
+      post('absences', req.to_json)
     end
 
     private

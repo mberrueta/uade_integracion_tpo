@@ -9,7 +9,7 @@ module Services
 
       }
 
-      request('employee', req.to_json)
+      post('employee', req.to_json)
     end
 
     private
