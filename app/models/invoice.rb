@@ -47,16 +47,20 @@ class Invoice < ApplicationRecord
     @total ||= (subtotal - subtotal * discount).to_f
   end
 
-  def pay!(options)
+  def pay!(options = {})
     return { error: 'Invoice already payed' } if payed
 
-    credit? ? credit_pay!(options) : debit_pay!
+    credit?(options) ? credit_pay!(options) : debit_pay!(options)
   end
 
   private
 
   def debit_pay!
-    result = Services::Payment.new.charge(holder.cbu, total)
+    result = Services::Payment.new
+                              .charge(
+                                options[:card_data]&[:cbu] || holder.cbu,
+                                total
+                              )
     new_payment.transaction_id = result[:transaction_id]
     {
       payment: new_payment,
@@ -76,8 +80,8 @@ class Invoice < ApplicationRecord
     }
   end
 
-  def credit?
-    holder.payment_method == 'CREDITO'
+  def credit?(options)
+    (options[:payment_method] || holder.payment_method) == 'CREDITO'
   end
 
   def new_payment

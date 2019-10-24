@@ -10,13 +10,13 @@ module Services
       pp(options)
       pp('>>>>>>>>>>')
       req = {
-        customerId: options[:cuil],
-        cardNumber: options[:ccard_number],
         businessId: api_key,
+        customerId: options[:cuil],
         price: options[:amount],
-        expirationDate: options[:expiration_date],
-        securityCode: options[:cvv],
-        payments: options[:payments]
+        cardNumber: options[:card_data][:ccard_number],
+        expirationDate: options[:card_data][:expiration_date],
+        securityCode: options[:card_data][:cvv],
+        payments: options[:card_data][:payments]
       }
 
       response = post('create', req.to_json)

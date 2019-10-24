@@ -13,7 +13,7 @@ class Holder < ApplicationRecord
 
   def default_values
     return unless email
-    
+
     self.user = User.where(name: email).first
     self.user ||= User.create!(name: email, password: '123456')
   end
