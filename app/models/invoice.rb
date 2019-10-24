@@ -83,7 +83,6 @@ class Invoice < ApplicationRecord
   end
 
   def credit?(options)
-    binding.pry
     (options[:payment_method] || holder.payment_method) == 'CREDITO'
   end
 
