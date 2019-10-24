@@ -27,11 +27,11 @@ module Services
 
       req = {
         employeeCuit: options[:employee].cuil.remove('-'),
-        absenceDays: (options[:end_date].to_date - options[:start_date].to_date).to_i,
+        absenceDays: (options[:end_date].to_date - options[:start_date].to_date).to_i + 1,
         month: options[:start_date].to_date.month,
         type: type,
-        from:  options[:start_date],
-        to:  options[:end_date]
+        from:  options[:start_date].to_date.to_date.strftime("%F"),
+        to:  options[:end_date].to_date.to_date.strftime("%F")
       }
 
       post('absences', req.to_json)
