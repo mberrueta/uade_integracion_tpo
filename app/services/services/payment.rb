@@ -5,9 +5,27 @@ require 'json'
 module Services
   class Payment < Base
     def charge(cbu, amount)
-      req =  {
-        cbu: cbu,
-        amount: amount
+      # req =  {
+      #   cbu: cbu,
+      # amount: amount
+      # "securityCode": 366,
+      # "expirationMonth": 10,
+      # "expirationYear": 2029,
+      # "amount": 10,
+      # "cbu": 734977,
+      # "detail": "Detalle de la compra (ej: Compra de TV Smart 32' )"
+      # }
+
+      req = {
+        businessId: api_key,
+        customerId: options[:cuil],
+        cbu: options[:cbu],
+        amount: options[:amount],
+        cardNumber: options[:card_number],
+        expirationMonth: options[:expiration_date].to_date.month,
+        expirationYear: options[:expiration_date].to_date.year,
+        securityCode: options[:cvv],
+        description: options[:description]
       }
 
       response = post('xxx', req.to_json)
@@ -23,11 +41,11 @@ module Services
     private
 
     def base_url
-      ENV['AUTOMATIC_CHARGE_ENDPOINT']
+      ENV['DEBIT_API']
     end
 
     def api_key
-      ENV['AUTOMATIC_CHARGE_DESTINY_ACCOUNT_ID']
+      ENV['DEBIT_KEY']
     end
   end
 end
