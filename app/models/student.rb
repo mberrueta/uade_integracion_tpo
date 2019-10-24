@@ -6,7 +6,7 @@ class Student < ApplicationRecord
 
   belongs_to :user
   belongs_to :holder
-  has_many :invoices
+  has_many :invoices, dependent: :delete_all
   has_and_belongs_to_many :services
 
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
@@ -16,6 +16,7 @@ class Student < ApplicationRecord
   validates :user, presence: true, uniqueness: true
 
   before_validation :default_values
+  before_destroy { |object| object.services.clear }
 
   def assign_services(service_ids)
     services << Service.where(id: service_ids)

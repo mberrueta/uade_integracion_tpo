@@ -1,5 +1,6 @@
 class Holder < ApplicationRecord
   belongs_to :user
+  has_many :students, dependent: :delete_all
 
   validate :debit_with_cbu
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }

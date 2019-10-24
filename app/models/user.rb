@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   has_secure_password
-  has_one :student
-  has_one :holder
-  has_one :admin_user
-  has_one :employee
+  has_one :student, dependent: :destroy
+  has_one :holder, dependent: :destroy
+  has_one :admin_user, dependent: :destroy
+  has_one :employee, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
   validates :password,
