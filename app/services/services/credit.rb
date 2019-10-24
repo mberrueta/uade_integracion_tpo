@@ -6,9 +6,6 @@ module Services
   class Credit < Base
     # rubocop:disable Metrics/AbcSize
     def charge(options)
-      pp('>>>>>>>>>>')
-      pp(options)
-      pp('>>>>>>>>>>')
       req = {
         businessId: api_key,
         customerId: options[:cuil],

@@ -5,27 +5,26 @@ require 'json'
 module Services
   class Payment < Base
     def charge(cbu, amount)
-      # req =  {
-      #   cbu: cbu,
-      # amount: amount
-      # "securityCode": 366,
-      # "expirationMonth": 10,
-      # "expirationYear": 2029,
-      # "amount": 10,
-      # "cbu": 734977,
-      # "detail": "Detalle de la compra (ej: Compra de TV Smart 32' )"
-      # }
-
+#   {
+#     "debitCardNumber": 5121398670572944,
+#     "securityCode": 366,
+#     "expirationMonth": 10,
+#     "expirationYear": 2029,
+#     "amount": 10,
+#     "cbu": 734977,
+#     "detail": "Detalle de la compra (ej: Compra de TV Smart 32' )"
+# }
+# no?
+# businessId: api_key,
+# customerId: options[:cuil],
       req = {
-        businessId: api_key,
-        customerId: options[:cuil],
         cbu: options[:cbu],
         amount: options[:amount],
-        cardNumber: options[:card_number],
+        debitCardNumber: options[:card_number],
         expirationMonth: options[:expiration_date].to_date.month,
         expirationYear: options[:expiration_date].to_date.year,
         securityCode: options[:cvv],
-        description: options[:description]
+        detail: options[:description]
       }
 
       response = post('xxx', req.to_json)

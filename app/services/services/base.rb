@@ -4,7 +4,7 @@ require 'json'
 
 module Services
   class Base
-    def post(path, body)
+    def post(path, body = {})
       request(path, body, :post)
     end
 

@@ -19,4 +19,5 @@ Rails.application.routes.draw do
     resources :payments, module: :invoices, only: :index
   end
   resources :payments
+  resources :payroll, only: :index
 end
