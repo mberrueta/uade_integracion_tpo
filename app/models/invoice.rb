@@ -58,7 +58,7 @@ class Invoice < ApplicationRecord
   def debit_pay!
     result = Services::Payment.new
                               .charge(
-                                options[:card_data]&[:cbu] || holder.cbu,
+                                options[:cbu] || holder.cbu,
                                 total
                               )
     new_payment.transaction_id = result[:transaction_id]
@@ -71,9 +71,11 @@ class Invoice < ApplicationRecord
   def credit_pay!(options)
     result = Services::Credit.new.charge(options.merge(
                                            amount: total,
-                                           cuil: holder.cuil
+                                           cuil: holder.cuil,
+                                           description: "Hogwarts School of Witchcraft and Wizardry Invoice ##{id} $#{total}"
                                          ))
     new_payment.transaction_id = result[:transaction_id]
+
     {
       payment: new_payment,
       error: result[:error]

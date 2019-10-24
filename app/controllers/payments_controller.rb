@@ -50,13 +50,11 @@ class PaymentsController < ApplicationController
   def payment_params
     params.require(:invoice_id)
     params.permit(
-      card_data: [
-        :ccard_number,
-        :expiration_date,
-        :cvv,
-        :payments,
-        :cbu
-      ]
+      :card_number,
+      :expiration_date,
+      :cvv,
+      :payments,
+      :cbu
     )
   end
 

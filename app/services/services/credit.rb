@@ -13,15 +13,16 @@ module Services
         businessId: api_key,
         customerId: options[:cuil],
         price: options[:amount],
-        cardNumber: options[:card_data][:ccard_number],
-        expirationDate: options[:card_data][:expiration_date],
-        securityCode: options[:card_data][:cvv],
-        payments: options[:card_data][:payments]
+        cardNumber: options[:card_number],
+        expirationDate: options[:expiration_date],
+        securityCode: options[:cvv],
+        payments: options[:payments],
+        description: options[:description]
       }
 
       response = post('create', req.to_json)
-      if response == Net::HTTPSuccess
-        r = JSON.parse(response)
+      if response.code == '200'
+        r = JSON.parse(response.body)
                 .map { |h| "#{h['_id']}:#{h['price']}" }
                 .join(',')
         return { transaction_id: r }
