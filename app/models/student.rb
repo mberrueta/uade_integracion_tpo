@@ -6,7 +6,7 @@ class Student < ApplicationRecord
 
   belongs_to :user
   belongs_to :holder
-  has_many :invoices, dependent: :delete_all
+  has_many :invoices, dependent: :destroy
   has_and_belongs_to_many :services
 
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }

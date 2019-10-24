@@ -1,7 +1,7 @@
 class Invoice < ApplicationRecord
   belongs_to :student
-  has_many :items, autosave: true, dependent: :delete_all
-  has_many :payments, dependent: :delete_all
+  has_many :items, autosave: true, dependent: :destroy
+  has_many :payments, dependent: :destroy
 
   delegate :holder, to: :student
 
