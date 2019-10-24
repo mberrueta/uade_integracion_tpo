@@ -17,22 +17,15 @@ namespace :billing do
         sp.error('holder `cbu` is missing !!!')
         next
       end
-      i = student.invoices.where(month: args[:month], year: args[:year]).first
-      result = Services::Payment.new.charge_account(student.holder.cbu, i.total)
+      invoice = student.invoices.where(month: args[:month], year: args[:year]).first
+      result = invoice.pay!
       if result[:error]
           sp.error(result[:error])
       else
-        p = Payment.new(
-          invoice: i,
-          date: Time.now,
-          amount: i.total,
-          payment_method: 'DEBITO_AUTOMATICO',
-          transaction_id: result[:transaction_id]
-        )
-        if p.save
+        if result[:payment].save
           sp.success("OK")
         else
-          sp.error(i.errors.full_messages.to_s)
+          sp.error(result[:payment].errors.full_messages.to_s)
         end
       end
     end

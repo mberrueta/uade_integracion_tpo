@@ -4,7 +4,7 @@ require 'json'
 
 module Services
   class Payment < Base
-    def charge_account(cbu, amount)
+    def charge(cbu, amount)
       req =  {
         cbu: cbu,
         amount: amount

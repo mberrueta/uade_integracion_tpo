@@ -4,12 +4,18 @@ require 'json'
 
 module Services
   class Credit < Base
-    def register(employee)
+    def charge(options)
       req =  {
-
+        customerId : options[:cuil],
+        cardNumber : options[:ccard_number],
+        businessId: api_key,
+        price: [numero],
+        expirationDate: options[:expiration_date],
+        securityCode: options[:cvv],
+        payments: options[:amount]
       }
 
-      post('employee', req.to_json)
+      post('create', req.to_json)
     end
 
     private

@@ -30,8 +30,4 @@ class Payment < ApplicationRecord
   def other_similar_payments
     @other_similar_payments ||= Payment.where(invoice_id: invoice_id)
   end
-
-  def register_credit_system
-    Services::Credit.new.register(self)
-  end
 end

@@ -3,6 +3,8 @@ class Invoice < ApplicationRecord
   has_many :items, autosave: true
   has_many :payments
 
+  delegate :holder, to: :student
+
   validates_uniqueness_of :month,
                           scope: %i[student year],
                           message: 'Invoice already created'
@@ -37,5 +39,41 @@ class Invoice < ApplicationRecord
 
   def total
     @total ||= (subtotal - subtotal * discount).to_f
+  end
+
+  def pay!
+    is_credit? ? credit_pay! : debit_pay!
+  end
+
+  private
+
+  def debit_pay!
+    result = Services::Payment.new.charge(holder.cbu, total)
+    new_payment.transaction_id = result[:transaction_id]
+    {
+      payment: new_payment,
+      error: result[:error]
+    }
+  end
+
+  def credit_pay!
+    result = Services::Credit.new.charge(holder.cbu, total)
+    {
+      payment: new_payment,
+      error: result[:error]
+    }
+  end
+
+  def is_credit?
+    holder.payment_method == 'CREDITO'
+  end
+
+  def new_payment
+    @new_payment ||= Payment.new(
+      invoice: self,
+      date: Time.now,
+      amount: total,
+      payment_method: holder.payment_method
+    )
   end
 end

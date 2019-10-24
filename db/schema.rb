@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_202355) do
+ActiveRecord::Schema.define(version: 2019_10_24_133940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,9 +58,6 @@ ActiveRecord::Schema.define(version: 2019_10_23_202355) do
     t.string "payment_method", default: "DEBITO_AUTOMATICO"
     t.string "cuil", default: "00000000000"
     t.string "cbu"
-    t.string "ccard_number"
-    t.string "cvv"
-    t.string "expiration_date"
     t.index ["user_id"], name: "index_holders_on_user_id", unique: true
   end
 
