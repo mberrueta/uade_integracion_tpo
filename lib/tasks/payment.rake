@@ -18,20 +18,22 @@ namespace :billing do
         next
       end
       i = student.invoices.where(month: args[:month], year: args[:year]).first
-      transaction_id = Services::Payment.new.charge_account(student.holder.cbu, amount)
-      if has_error
-          sp.error(error)
-      p = Payment.new(
-        invoice: i,
-        date: Time.now,
-        amount: i.total,
-        payment_method: 'DEBITO_AUTOMATICO',
-        transaction_id: transaction_id
-      )
-      if p.save
-        sp.success("OK")
+      result = Services::Payment.new.charge_account(student.holder.cbu, i.total)
+      if result[:error]
+          sp.error(result[:error])
       else
-        sp.error(i.errors.full_messages.to_s)
+        p = Payment.new(
+          invoice: i,
+          date: Time.now,
+          amount: i.total,
+          payment_method: 'DEBITO_AUTOMATICO',
+          transaction_id: result[:transaction_id]
+        )
+        if p.save
+          sp.success("OK")
+        else
+          sp.error(i.errors.full_messages.to_s)
+        end
       end
     end
   end
