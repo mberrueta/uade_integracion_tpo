@@ -13,7 +13,7 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    @payment = Payment.new(payment_params)
+    @payment = invoice.pay!(payment_params)
     if @payment.save
       render json: @payment, status: :created
     else
@@ -47,9 +47,16 @@ class PaymentsController < ApplicationController
     params.require(:invoice_id)
     params.require(:amount)
     params.permit(
-      :invoice_id,
-      :amount,
-      :payment_method
+      :cuil
+      :ccard_number
+      :amount
+      :expiration_date
+      :cvv
+      :payments
     )
+  end
+
+  def invoice
+    Invoice.find(params[:invoice_id])
   end
 end
