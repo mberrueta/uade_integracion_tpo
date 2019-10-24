@@ -57,8 +57,10 @@ class Invoice < ApplicationRecord
   end
 
   def credit_pay!(options = {})
-    options.merge(amount: total, cuil: holder.cuil)
-    result = Services::Credit.new.charge(options)
+    result = Services::Credit.new.charge(options.merge(
+      amount: total,
+      cuil: holder.cuil
+    ))
     {
       payment: new_payment,
       error: result[:error]

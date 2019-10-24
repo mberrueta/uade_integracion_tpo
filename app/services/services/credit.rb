@@ -5,6 +5,9 @@ require 'json'
 module Services
   class Credit < Base
     def charge(options)
+      pp('>>>>>>>>>>')
+      pp(options)
+      pp('>>>>>>>>>>')
       req =  {
         customerId: options[:cuil],
         cardNumber: options[:ccard_number],

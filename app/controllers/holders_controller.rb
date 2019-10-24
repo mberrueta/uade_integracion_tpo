@@ -42,13 +42,15 @@ class HoldersController < ApplicationController
   end
 
   def holder_params
-    params.required(:name)
     params.permit(
-      :name,
-      :last_name,
-      :email,
-      :phone,
       :address,
+      :cbu,
+      :cuil,
+      :email,
+      :last_name,
+      :name,
+      :payment_method,
+      :phone,
       :user_id
     )
   end
