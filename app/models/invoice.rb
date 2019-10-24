@@ -55,7 +55,7 @@ class Invoice < ApplicationRecord
 
   private
 
-  def debit_pay!
+  def debit_pay!(options)
     result = Services::Payment.new
                               .charge(
                                 options[:cbu] || holder.cbu,
