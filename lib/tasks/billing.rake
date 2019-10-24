@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 namespace :billing do
   desc 'This task is to generate the invoices for all the students'
-  
+
   task :invoice, %i[year month] => [:environment] do |_t, args|
     raise StandardError, '`year` is required !!!' unless args[:year]
     raise StandardError, '`month` is required !!!' unless args[:month]

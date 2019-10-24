@@ -4,11 +4,12 @@ require 'json'
 
 module Services
   class Credit < Base
+    # rubocop:disable Metrics/AbcSize
     def charge(options)
       pp('>>>>>>>>>>')
       pp(options)
       pp('>>>>>>>>>>')
-      req =  {
+      req = {
         customerId: options[:cuil],
         cardNumber: options[:ccard_number],
         businessId: api_key,
@@ -24,12 +25,13 @@ module Services
                 .map { |h| "#{h['_id']}:#{h['price']}" }
                 .join(',')
         return { transaction_id: r }
+      else
+        {
+          error: "Credit payment API: #{response.code} ~ #{response.body}"
+        }
       end
-
-      {
-        error: "Credit payment API: #{response.code} ~ #{response.body}"
-      }
     end
+    # rubocop:enable Metrics/AbcSize
 
     private
 

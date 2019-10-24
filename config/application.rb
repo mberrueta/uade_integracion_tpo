@@ -34,9 +34,7 @@ module IntSchool
     end
 
     Bundler.require(*Rails.groups)
-    if ['development', 'test'].include? ENV['RAILS_ENV']
-      Dotenv::Railtie.load
-    end
+    Dotenv::Railtie.load if %w[development test].include? ENV['RAILS_ENV']
 
     initializer(
       :remove_action_mailbox_and_activestorage_routes,

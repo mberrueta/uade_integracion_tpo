@@ -5,7 +5,7 @@ require 'json'
 module Services
   class Presentism < Base
     def register(employee)
-      req =  {
+      req = {
         cuit: employee.cuil.remove('-'),
         clientCuit: api_key,
         firstName: employee.name,
@@ -15,23 +15,27 @@ module Services
       post('employee', req.to_json)
     end
 
+    # rubocop:disable Metrics/AbcSize
     def absences(options)
-      case options[:reason]
-      when "Vacation"
-        type = "VACACIONES"
-      when "Medical day"
-        type = "ENFERMEDAD"
-      else
-        type = "AUSENCIA"
-      end
+      type =
+        case options[:reason]
+        when 'Vacation'
+          'VACACIONES'
+        when 'Medical day'
+          'ENFERMEDAD'
+        else
+          'AUSENCIA'
+        end
 
       req = {
         employeeCuit: options[:employee].cuil.remove('-'),
-        absenceDays: (options[:end_date].to_date - options[:start_date].to_date).to_i + 1,
+        absenceDays: (
+          options[:end_date].to_date - options[:start_date].to_date
+        ).to_i + 1,
         month: options[:start_date].to_date.month,
         type: type,
-        from:  options[:start_date].to_date.to_date.strftime("%F"),
-        to:  options[:end_date].to_date.to_date.strftime("%F")
+        from: options[:start_date].to_date.to_date.strftime('%F'),
+        to: options[:end_date].to_date.to_date.strftime('%F')
       }
 
       response = post('absences', req.to_json)
@@ -41,8 +45,8 @@ module Services
       {
         error: "Payment API:#{r['status']} ~ #{r['error']}, #{r['message']}"
       }
-
     end
+    # rubocop:enable Metrics/AbcSize
 
     private
 

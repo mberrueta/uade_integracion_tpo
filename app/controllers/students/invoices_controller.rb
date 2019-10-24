@@ -12,12 +12,12 @@ module Students
       Invoice.includes(items: :service)
              .where(student_id: params[:student_id])
              .to_json(
-              include: [
-                :student,
-                items: { methods: :name }
-              ],
-              methods: %i[subtotal total payed]
-            )
+               include: [
+                 :student,
+                 items: { methods: :name }
+               ],
+               methods: %i[subtotal total payed]
+             )
     end
   end
 end

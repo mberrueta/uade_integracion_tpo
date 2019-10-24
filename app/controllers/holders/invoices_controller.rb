@@ -13,12 +13,12 @@ module Holders
              .joins(:student)
              .where(students: { holder_id: params[:holder_id] })
              .to_json(
-              include: [
-                :student,
-                items: { methods: :name }
-              ],
-              methods: %i[subtotal total payed]
-            )
+               include: [
+                 :student,
+                 items: { methods: :name }
+               ],
+               methods: %i[subtotal total payed]
+             )
     end
   end
 end

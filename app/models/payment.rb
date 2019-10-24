@@ -15,6 +15,8 @@ class Payment < ApplicationRecord
     self.payment_method = 'efectivo' unless payment_method.present?
   end
 
+  # rubocop:disable Metrics/LineLength
+  # rubocop:disable Metrics/AbcSize
   def over_payments
     return unless invoice
     return unless invoice.total < other_similar_payments.sum(:amount) + amount
@@ -26,6 +28,8 @@ class Payment < ApplicationRecord
       errors.add(:over_payed, "can't create a payment. there are already #{other_similar_payments.count} payments. It left only $ #{left_pay} to pay")
     end
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/LineLength
 
   def other_similar_payments
     @other_similar_payments ||= Payment.where(invoice_id: invoice_id)

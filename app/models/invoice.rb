@@ -49,7 +49,8 @@ class Invoice < ApplicationRecord
 
   def pay!(options)
     return { error: 'Invoice already payed' } if payed
-    is_credit? ? credit_pay!(options) : debit_pay!
+
+    credit? ? credit_pay!(options) : debit_pay!
   end
 
   private
@@ -63,11 +64,11 @@ class Invoice < ApplicationRecord
     }
   end
 
-  def credit_pay!(options = {})
+  def credit_pay!(options)
     result = Services::Credit.new.charge(options.merge(
-      amount: total,
-      cuil: holder.cuil
-      ))
+                                           amount: total,
+                                           cuil: holder.cuil
+                                         ))
     new_payment.transaction_id = result[:transaction_id]
     {
       payment: new_payment,
@@ -75,7 +76,7 @@ class Invoice < ApplicationRecord
     }
   end
 
-  def is_credit?
+  def credit?
     holder.payment_method == 'CREDITO'
   end
 
