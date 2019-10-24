@@ -26,10 +26,17 @@ module IntSchool
 
     config.action_dispatch.return_only_media_type_on_content_type = false
 
-    config.middleware.insert_before 0, Rack::Cors do
+    # config.middleware.insert_before 0, Rack::Cors do
+    #   allow do
+    #     origins '*'
+    #     resource '*', headers: :any, methods: %i[get post options put patch delete]
+    #   end
+    # end
+
+    config.middleware.insert_before 0, "Rack::Cors" do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: %i[get post options put patch delete]
+        resource '*', headers: :any, methods: [:get, :post, :options, :delete, :put, :patch], credentials: true
       end
     end
 
