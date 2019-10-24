@@ -4,6 +4,7 @@ class Student < ApplicationRecord
 
   belongs_to :user
   belongs_to :holder
+  has_many :invoices
   has_and_belongs_to_many :services
 
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }

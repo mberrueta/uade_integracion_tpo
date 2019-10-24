@@ -24,9 +24,9 @@ module Services
       end
       request.body = body
 
-      print(">>>>> Calling external #{uri} with body `#{body}`")
+      Rails.logger.info(">>>>> Calling external #{uri} with body `#{body}`")
       respos = http.request(request)
-      print("Response `#{respos.body}`")
+      Rails.logger.info("Response `#{respos.body}`")
 
       respos.body
     end
