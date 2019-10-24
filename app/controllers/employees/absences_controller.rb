@@ -3,7 +3,13 @@
 module Employees
   class AbsencesController < ApplicationController
     def create
-      render json: Services::Presentism.new.absences(options)
+      result = Services::Presentism.new.absences(options)
+      if result[:error].blank?
+        render json: result, status: :created
+      else
+        Rails.logger.error("Error creating an absence: `#{result[:error]}`")
+        render json: result, status: :unprocessable_entity
+      end
     end
 
     private
