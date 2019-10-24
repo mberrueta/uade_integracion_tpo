@@ -6,13 +6,13 @@ module Services
   class Credit < Base
     def charge(options)
       req =  {
-        customerId : options[:cuil],
-        cardNumber : options[:ccard_number],
+        customerId: options[:cuil],
+        cardNumber: options[:ccard_number],
         businessId: api_key,
-        price: [numero],
+        price: options[:amount],
         expirationDate: options[:expiration_date],
         securityCode: options[:cvv],
-        payments: options[:amount]
+        payments: options[:payments]
       }
 
       post('create', req.to_json)

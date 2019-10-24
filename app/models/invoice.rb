@@ -41,8 +41,8 @@ class Invoice < ApplicationRecord
     @total ||= (subtotal - subtotal * discount).to_f
   end
 
-  def pay!
-    is_credit? ? credit_pay! : debit_pay!
+  def pay!(options)
+    is_credit? ? credit_pay!(options) : debit_pay!
   end
 
   private
@@ -56,8 +56,9 @@ class Invoice < ApplicationRecord
     }
   end
 
-  def credit_pay!
-    result = Services::Credit.new.charge(holder.cbu, total)
+  def credit_pay!(options = {})
+    options.merge(amount: total, cuil: holder.cuil)
+    result = Services::Credit.new.charge(options)
     {
       payment: new_payment,
       error: result[:error]
