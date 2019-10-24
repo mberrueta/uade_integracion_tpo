@@ -28,7 +28,7 @@ module Services
       respos = http.request(request)
       Rails.logger.info("Response `#{respos.body}`")
 
-      respos.body
+      respos
     end
   end
 end

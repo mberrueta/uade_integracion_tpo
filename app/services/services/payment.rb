@@ -13,7 +13,7 @@ module Services
       response = post('xxx', req.to_json)
       return { transaction_id: response.body.transaction_id } if response == Net::HTTPSuccess
 
-      r = JSON.parse(response)
+      r = JSON.parse(response.body)
       {
         error: "Payment API:#{r['status']} ~ #{r['error']}, #{r['message']}"
       }

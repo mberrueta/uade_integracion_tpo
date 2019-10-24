@@ -34,7 +34,14 @@ module Services
         to:  options[:end_date].to_date.to_date.strftime("%F")
       }
 
-      post('absences', req.to_json)
+      response = post('absences', req.to_json)
+      return response.body if response == Net::HTTPSuccess
+
+      r = JSON.parse(response.body)
+      {
+        error: "Payment API:#{r['status']} ~ #{r['error']}, #{r['message']}"
+      }
+
     end
 
     private

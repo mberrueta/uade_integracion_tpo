@@ -29,6 +29,12 @@ class Invoice < ApplicationRecord
             },
             presence: true
 
+  validate :not_payed
+
+  def not_payed
+    errors.add(:invoice, 'Invoice already payed') if payed
+  end
+
   def subtotal
     @subtotal ||= items.sum(:price).to_f
   end
@@ -42,6 +48,7 @@ class Invoice < ApplicationRecord
   end
 
   def pay!(options)
+    return { error: 'Invoice already payed' } if payed
     is_credit? ? credit_pay!(options) : debit_pay!
   end
 
@@ -60,7 +67,8 @@ class Invoice < ApplicationRecord
     result = Services::Credit.new.charge(options.merge(
       amount: total,
       cuil: holder.cuil
-    ))
+      ))
+    new_payment.transaction_id = result[:transaction_id]
     {
       payment: new_payment,
       error: result[:error]

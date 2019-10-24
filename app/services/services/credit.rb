@@ -18,7 +18,17 @@ module Services
         payments: options[:payments]
       }
 
-      post('create', req.to_json)
+      response = post('create', req.to_json)
+      if response == Net::HTTPSuccess
+        r = JSON.parse(response)
+                .map { |h| "#{h['_id']}:#{h['price']}" }
+                .join(',')
+        return { transaction_id: r }
+      end
+
+      {
+        error: "Credit payment API: #{response.code} ~ #{response.body}"
+      }
     end
 
     private
