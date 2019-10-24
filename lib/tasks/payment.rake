@@ -10,23 +10,25 @@ namespace :billing do
     )
     spinner.auto_spin
 
-    Student.joins(:holder).where(holders: { payment_method: 'DEBITO_AUTOMATICO' }).each do |student|
+    Student.joins(:holder)
+           .where(holders: { payment_method: 'DEBITO_AUTOMATICO' })
+           .each do |student|
       sp = spinner.register("[:spinner] #{student.last_name} #{student.name}. ")
       sp.auto_spin
       unless student.holder.cbu
         sp.error('holder `cbu` is missing !!!')
         next
       end
-      invoice = student.invoices.where(month: args[:month], year: args[:year]).first
+      invoice = student.invoices
+                       .where(month: args[:month], year: args[:year])
+                       .first
       result = invoice.pay!
       if result[:error]
-          sp.error(result[:error])
+        sp.error(result[:error])
+      elsif result[:payment].save
+        sp.success('OK')
       else
-        if result[:payment].save
-          sp.success("OK")
-        else
-          sp.error(result[:payment].errors.full_messages.to_s)
-        end
+        sp.error(result[:payment].errors.full_messages.to_s)
       end
     end
   end

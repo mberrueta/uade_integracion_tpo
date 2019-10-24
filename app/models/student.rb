@@ -1,6 +1,8 @@
 class Student < ApplicationRecord
   SINGLE_SCHOLARSHIP_ID = 10_001
+  private_constant :SINGLE_SCHOLARSHIP_ID
   DOUBLE_SCHOLARSHIP_ID = 10_002
+  private_constant :DOUBLE_SCHOLARSHIP_ID
 
   belongs_to :user
   belongs_to :holder
@@ -20,9 +22,9 @@ class Student < ApplicationRecord
   end
 
   def scholarship_type
-    return services.where(id: [SINGLE_SCHOLARSHIP_ID, DOUBLE_SCHOLARSHIP_ID])
-                   .pluck(:name)
-                   .first
+    services.where(id: [SINGLE_SCHOLARSHIP_ID, DOUBLE_SCHOLARSHIP_ID])
+            .pluck(:name)
+            .first
   end
 
   private

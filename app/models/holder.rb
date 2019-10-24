@@ -12,22 +12,23 @@ class Holder < ApplicationRecord
   private
 
   def default_values
-    if email
-      self.user = User.where(name: email).first
-      self.user ||= User.create!(name: email, password: '123456')
-    end
+    return unless email
+
+    self.user = User.where(name: email).first
+    self.user ||= User.create!(name: email, password: '123456')
   end
 
   def debit_with_cbu
-    return if is_debitable? && cbu || is_creditable?
+    return if debitable? && cbu || creditable?
+
     errors.add(:cbu, "can't be blank, if the payment is debit")
   end
 
-  def is_debitable?
-    !is_creditable?
+  def debitable?
+    !creditable?
   end
 
-  def is_creditable?
+  def creditable?
     payment_method == 'CREDITO'
   end
 end

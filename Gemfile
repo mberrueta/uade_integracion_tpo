@@ -9,10 +9,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'jwt'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
-gem 'rack-cors'
+gem 'rack-cors', :require => 'rack/cors'
 gem 'rails', '~> 6.0.0'
 gem 'tty-spinner'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'rollbar'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

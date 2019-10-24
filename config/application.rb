@@ -26,17 +26,22 @@ module IntSchool
 
     config.action_dispatch.return_only_media_type_on_content_type = false
 
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins '*'
-        resource '*', headers: :any, methods: %i[get post options]
-      end
-    end
+    # config.middleware.insert_before 0, Rack::Cors do
+    #   allow do
+    #     origins '*'
+    #     resource '*', headers: :any, methods: %i[get post options put patch delete]
+    #   end
+    # end
+
+    # config.middleware.insert_before 0, "Rack::Cors" do
+    #   allow do
+    #     origins '*'
+    #     resource '*', headers: :any, methods: [:get, :post, :options, :delete, :put, :patch], credentials: true
+    #   end
+    # end
 
     Bundler.require(*Rails.groups)
-    if ['development', 'test'].include? ENV['RAILS_ENV']
-      Dotenv::Railtie.load
-    end
+    Dotenv::Railtie.load if %w[development test].include? ENV['RAILS_ENV']
 
     initializer(
       :remove_action_mailbox_and_activestorage_routes,

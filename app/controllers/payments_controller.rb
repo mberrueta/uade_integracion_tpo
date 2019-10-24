@@ -16,7 +16,7 @@ class PaymentsController < ApplicationController
     result = invoice.pay!(payment_params)
     @payment = result[:payment]
 
-    return  render json: { errors: result[:error] } if result[:error]
+    return render json: { errors: result[:error] }, status: :unprocessable_entity if result[:error]
 
     if @payment.save
       render json: @payment, status: :created
@@ -50,10 +50,11 @@ class PaymentsController < ApplicationController
   def payment_params
     params.require(:invoice_id)
     params.permit(
-      :ccard_number,
+      :card_number,
       :expiration_date,
       :cvv,
-      :payments
+      :payments,
+      :cbu
     )
   end
 

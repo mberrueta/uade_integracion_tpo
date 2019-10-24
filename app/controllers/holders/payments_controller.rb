@@ -10,7 +10,7 @@ module Holders
 
     def payments
       ::Payment.joins(invoice: :student)
-               .where(invoice: { students: { holder_id: params[:holder_id] }})
+               .where(invoice: { students: { holder_id: params[:holder_id] } })
     end
   end
 end
