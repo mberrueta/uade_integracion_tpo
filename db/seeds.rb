@@ -31,7 +31,7 @@ u3 = User.create!(
 )
 u4 = User.create!(
   id: 10_004,
-  name: 'jrodriguez@gmail.com',
+  name: 'admin@gmail.com',
   password: '123456'
 )
 u5 = User.create!(
@@ -109,19 +109,11 @@ _h3 = Holder.create!(
   user: u3
 )
 
-_a1 = AdminUser.create!(
-  id: 10_001,
-  name: 'José',
-  last_name: 'Argento',
-  email: 'pepe.arg@gmail.com',
-  user: u1
-)
-
 _a2 = AdminUser.create!(
   id: 10_002,
   name: 'Jorge',
   last_name: 'Rodriguez',
-  email: 'jrodriguez@gmail.com',
+  email: 'admin@gmail.com',
   user: u4
 )
 
