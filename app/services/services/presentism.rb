@@ -39,8 +39,9 @@ module Services
         to: options[:end_date].to_date.to_date.strftime('%F')
       }
 
+
       response = post('absences', req.to_json)
-      return response.body if response == Net::HTTPSuccess
+      return { result: "Registered" } if response.code == "200"
 
       r = JSON.parse(response.body)
       {
