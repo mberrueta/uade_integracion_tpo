@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   post '/auth/login', to: 'authentication#login'
   get '/students/:id/services', to: 'students#services'
+  get '/payroll', to: 'payroll#index'
 
   resources :admins
   resources :employees do
