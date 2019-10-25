@@ -32,6 +32,8 @@ class Invoice < ApplicationRecord
   validate :not_payed
 
   def not_payed
+    return if payments.empty?
+
     errors.add(:invoice, 'Invoice already payed') if payed
   end
 

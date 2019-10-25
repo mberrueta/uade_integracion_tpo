@@ -4,7 +4,13 @@ class PaymentsController < ApplicationController
   before_action :find_one, except: %i[create index]
 
   def index
-    @payments = Payment.all
+    @payments = Payment.all.as_json(
+      include: [
+        invoice: {
+          include: [ student: { include: :holder } ]
+          }
+        ]
+      )
     render json: @payments, status: :ok
   end
 
