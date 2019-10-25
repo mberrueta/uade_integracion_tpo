@@ -64,7 +64,7 @@ class Invoice < ApplicationRecord
                                 total
                               )
     new_payment.transaction_id = result[:transaction_id]
-    payment_method = options[:payment_method] || holder.payment_method
+    new_payment.payment_method = options[:payment_method] || holder.payment_method
     {
       payment: new_payment,
       error: result[:error]
@@ -78,7 +78,7 @@ class Invoice < ApplicationRecord
                                            description: "Hogwarts School of Witchcraft and Wizardry Invoice ##{id} $#{total}"
                                          ))
     new_payment.transaction_id = result[:transaction_id]
-    payment_method = options[:payment_method] || holder.payment_method
+    new_payment.payment_method = options[:payment_method] || holder.payment_method
 
     {
       payment: new_payment,
