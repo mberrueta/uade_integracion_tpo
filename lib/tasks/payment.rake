@@ -22,7 +22,10 @@ namespace :billing do
       invoice = student.invoices
                        .where(month: args[:month], year: args[:year])
                        .first
-      next unless invoice
+      unless invoice
+        sp.error("no invoice")
+        next
+      end
 
       result = invoice.pay!
       if result[:error]
