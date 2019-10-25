@@ -6,7 +6,7 @@ module Services
   class Payroll < Base
     # rubocop:disable Metrics/AbcSize
     def call
-      response = get("clientes/liquidaciones-cliente/#{api_key}")
+      response = get("clientes/liquidaciones/#{api_key}")
       if response.code == '200'
         {
           result: JSON.parse(response.body)
