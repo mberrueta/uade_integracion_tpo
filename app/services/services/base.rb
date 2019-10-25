@@ -10,7 +10,7 @@ module Services
       r = Net::HTTP::Post.new(uri.request_uri, header)
       r.body = body
       respos = http(uri).request(r)
-      Rails.logger.info("Response `#{respos.body}`")
+      Rails.logger.info("<<<<< Response #{uri} ~ `#{respos.body}`")
       respos
     end
 
