@@ -22,9 +22,11 @@ namespace :billing do
       invoice = student.invoices
                        .where(month: args[:month], year: args[:year])
                        .first
+      next unless invoice
+
       result = invoice.pay!
       if result[:error]
-        sp.error(result[:error])
+        sp.error("Integration failed!: `#{result[:error]}`")
       elsif result[:payment].save
         sp.success('OK')
       else

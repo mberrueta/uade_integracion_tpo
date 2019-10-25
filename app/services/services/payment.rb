@@ -13,13 +13,18 @@ module Services
       }
 
       response = post('trasferir', req.to_json)
+      result = JSON.parse(response.body)
 
-      return { transaction_id: response.body.transaction_id } if response == Net::HTTPSuccess
-
-      r = JSON.parse(response.body)
-      {
-        error: "Payment API:#{r['status']} ~ #{r['error']}, #{r['message']}"
-      }
+      if result['success']
+        {
+          # TODO: should be an ID
+          transaction_id: result['message']
+        }
+      else
+        {
+          error: "Payment API:#{response.code} ~ #{result['message']}"
+        }
+      end
     end
 
     private

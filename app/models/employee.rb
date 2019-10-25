@@ -22,6 +22,7 @@ class Employee < ApplicationRecord
     self.start_date ||= Time.now
   end
 
+  # Employee.all.each { |e| e.send(:register_presentism_system) }
   def register_presentism_system
     Services::Presentism.new.register(self)
   end
