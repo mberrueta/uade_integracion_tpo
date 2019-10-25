@@ -19,7 +19,7 @@ module Services
       Rails.logger.info(">>>>> Calling external #{uri}")
       r = Net::HTTP::Get.new(uri.request_uri, header)
       respos = http(uri).request(r)
-      Rails.logger.info("Response `#{respos.body}`")
+      Rails.logger.info("<<<<< Response #{uri} ~ `#{respos.body}`")
       respos
     end
 
