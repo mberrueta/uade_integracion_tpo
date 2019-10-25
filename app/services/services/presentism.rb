@@ -9,7 +9,8 @@ module Services
         cuit: employee.cuil.remove('-'),
         clientCuit: api_key,
         firstName: employee.name,
-        lastName: employee.last_name
+        lastName: employee.last_name,
+        type: 'MENSUAL'
       }
 
       post('employee', req.to_json)
