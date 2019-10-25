@@ -8,7 +8,7 @@ module Services
 
       req = {
         destinoCBU: api_key,
-        origenCBU: cbu,
+        origenCBU: cbu.truncate(16),
         amount: amount
       }
 
