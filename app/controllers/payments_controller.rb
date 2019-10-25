@@ -54,7 +54,8 @@ class PaymentsController < ApplicationController
       :expiration_date,
       :cvv,
       :payments,
-      :cbu
+      :cbu,
+      :payment_method
     )
   end
 

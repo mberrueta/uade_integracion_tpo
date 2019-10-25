@@ -50,7 +50,7 @@ class Invoice < ApplicationRecord
   def pay!(options = {})
     return { error: 'Invoice already payed' } if payed
 
-    credit?(options) ? credit_pay!(options) : debit_pay!(options)
+    credit_payment?(options) ? credit_pay!(options) : debit_pay!(options)
   end
 
   private
@@ -82,7 +82,7 @@ class Invoice < ApplicationRecord
     }
   end
 
-  def credit?(options)
+  def credit_payment?(options)
     (options[:payment_method] || holder.payment_method) == 'CREDITO'
   end
 
