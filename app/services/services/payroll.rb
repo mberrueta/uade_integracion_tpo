@@ -6,12 +6,12 @@ module Services
   class Payroll < Base
     # rubocop:disable Metrics/AbcSize
     def call
-      response = post("liquidaciones/#{api_key}")
+      response = get("clientes/liquidaciones-cliente/#{api_key}")
       if response.code == '200'
         JSON.parse(response.body)
       else
         {
-          error: "Credit payment API: #{response.code} ~ #{response.body}"
+          error: "Payroll report API: #{response.code} ~ #{response.body}"
         }
       end
     end
@@ -20,11 +20,11 @@ module Services
     private
 
     def base_url
-      ENV['CREDIT_API']
+      ENV['PAYROLL_API']
     end
 
     def api_key
-      ENV['CREDIT_KEY']
+      ENV['PAYROLL_KEY']
     end
   end
 end

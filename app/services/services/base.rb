@@ -7,6 +7,9 @@ module Services
     def post(path, body = {})
       request(path, body, :post)
     end
+    def get(path)
+      request(path, {}, :get)
+    end
 
     # rubocop:disable Metrics/AbcSize
     def request(path, body, type)
@@ -19,12 +22,12 @@ module Services
 
       request = if type == :post
                   Net::HTTP::Post.new(uri.request_uri, header)
+                  request.body = body
+                  Rails.logger.info(">>>>> Calling external #{uri} with body `#{body}`")
                 else
                   Net::HTTP::Get.new(uri.request_uri, header)
+                  Rails.logger.info(">>>>> Calling external #{uri}")
                 end
-      request.body = body
-
-      Rails.logger.info(">>>>> Calling external #{uri} with body `#{body}`")
       respos = http.request(request)
       Rails.logger.info("Response `#{respos.body}`")
 
