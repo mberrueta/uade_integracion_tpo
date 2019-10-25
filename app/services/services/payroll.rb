@@ -8,7 +8,9 @@ module Services
     def call
       response = get("clientes/liquidaciones-cliente/#{api_key}")
       if response.code == '200'
-        JSON.parse(response.body)
+        {
+          result: JSON.parse(response.body)
+        }
       else
         {
           error: "Payroll report API: #{response.code} ~ #{response.body}"
