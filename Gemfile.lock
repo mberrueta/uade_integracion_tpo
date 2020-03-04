@@ -123,7 +123,7 @@ GEM
       pry (>= 0.9.11)
     pry-state (0.1.10)
       pry (>= 0.9.10, < 0.12.0)
-    puma (3.12.1)
+    puma (3.12.4)
     rack (2.0.7)
     rack-cors (1.0.3)
     rack-test (1.1.0)
@@ -202,7 +202,7 @@ DEPENDENCIES
   pry-byebug
   pry-stack_explorer
   pry-state
-  puma (~> 3.11)
+  puma (~> 3.12)
   rack-cors
   rails (~> 6.0.0)
   rollbar
